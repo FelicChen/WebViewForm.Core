@@ -20,8 +20,6 @@ namespace WebViewForm
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseForwardedHeaders();
-
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

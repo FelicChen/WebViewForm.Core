@@ -33,10 +33,11 @@
         
     </div>
     <script>
-        var body = document.getElementById('body');
-        window.addEventListener('resize', (evt) => {
-            body.innerHTML = window.innerHeight + '<br>' + window.innerWidth;
-        }, true);
+        (function () {
+            fetch('/home/data').then(e => e.json()).then(e => {
+                document.getElementById('body').innerHTML = e.msg;
+            });
+        })();
     </script>
 </body>
 </html>

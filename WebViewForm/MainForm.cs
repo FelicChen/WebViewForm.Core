@@ -13,6 +13,7 @@ namespace WebViewForm
     {
         public MainForm(IWebHost app)
         {
+            // 因為是使用動態Port，要從WebHost取得包含Port的網址
             var addresses = app.ServerFeatures.Get<IServerAddressesFeature>().Addresses;
             var address = new Uri(addresses.First());
 
@@ -30,11 +31,13 @@ namespace WebViewForm
                 TabIndex = 0,
                 ZoomFactor = 1D
             };
+
             wb.CoreWebView2InitializationCompleted += (sender, e) =>
             {
                 var webView = ((WebView2?)sender);
                 if (e.IsSuccess)
                 {
+                    // 設定說明請見 https://learn.microsoft.com/en-us/dotnet/api/microsoft.web.webview2.core.corewebview2settings
                     webView!.CoreWebView2.Settings.AreDevToolsEnabled = 
                     webView!.CoreWebView2.Settings.AreDefaultContextMenusEnabled = 
                     webView!.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = 
@@ -45,6 +48,7 @@ namespace WebViewForm
                 }
             };
 
+            // 讓WebView2隨著Form縮放
             Resize += (sender, e) =>
             {
                 wb.Size = new Size(Width - 16, Height - 39);

@@ -10,9 +10,11 @@ namespace WebViewForm.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index() => Redirect("/index.html");
+        public IActionResult Page1() => Redirect("/page1.html");
+        public IActionResult Data() => new JsonResult(new
         {
-            return Redirect("/index.html");
-        }
+            msg = "這是page 2"
+        });
     }
 }
