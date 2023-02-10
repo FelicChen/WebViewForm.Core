@@ -1,6 +1,8 @@
 [webview2Settings]: https://learn.microsoft.com/en-us/dotnet/api/microsoft.web.webview2.core.corewebview2settings "CoreWebView2Settings Class"
 [darkthread]: https://blog.darkthread.net/ "黑暗執行緒"
 
+Blog: https://felicnoblog.blogspot.com/2023/02/first.html
+
 # WebViewForm.Core
 
 點子是從 [黑暗大][darkthread] 的Minimal API及微軟出的WebView2來的，我就想既然有了WebView2，應該可以用C#做出類似Node.js+Electron的程式，於是這支樣板就寫出來了😆
