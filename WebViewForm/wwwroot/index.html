@@ -29,14 +29,48 @@
             </div>
         </div>
     </nav>
-    <div id="body">
-        
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <input id="newFormName" class="form-control" placeholder="設定Form.Text" />
+            </div>
+            <div class="col-4">
+                <button id="setFormName" class="btn btn-primary">設定</button>
+            </div>
+            <div class="col-4"></div>
+            <div id="url" class="col-4"></div>
+            <div class="col-4">
+                <button id="getUrl" class="btn btn-primary">取得Url</button>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-12">
+                <button id="openTxt" class="btn btn-primary">開啟txt檔</button>
+            </div>
+            <div id="txtContent" class="col-12"></div>
+        </div>
     </div>
     <script>
-        var body = document.getElementById('body');
-        window.addEventListener('resize', (evt) => {
-            body.innerHTML = window.innerHeight + '<br>' + window.innerWidth;
-        }, true);
+        (function () {
+            let setFormName = document.getElementById('setFormName');
+            setFormName.addEventListener('click', () => {
+                let newFormName = document.getElementById('newFormName');
+                chrome.webview.hostObjects.test.SetFormText(newFormName.value);
+            });
+            let getUrl = document.getElementById('getUrl');
+            getUrl.addEventListener('click', () => {
+                let url = document.getElementById('url');
+                chrome.webview.hostObjects.test.GetWebViewSource().then(t => {
+                    url.innerText = t
+                });
+            });
+            let openTxt = document.getElementById('openTxt');
+            openTxt.addEventListener('click', () => {
+                let txtContent = document.getElementById('txtContent');
+                chrome.webview.hostObjects.test.OpenTxt().then(t => {
+                    txtContent.innerText = t;
+                });
+            });
+        })();
     </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebViewForm.HostObjects;
 
 namespace WebViewForm
 {
@@ -38,14 +39,15 @@ namespace WebViewForm
                 if (e.IsSuccess)
                 {
                     // 設定說明請見 https://learn.microsoft.com/en-us/dotnet/api/microsoft.web.webview2.core.corewebview2settings
-                    webView!.CoreWebView2.Settings.AreDevToolsEnabled = 
-                    webView!.CoreWebView2.Settings.AreDefaultContextMenusEnabled = 
-                    webView!.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = 
-                    webView!.CoreWebView2.Settings.IsBuiltInErrorPageEnabled =
-                    webView!.CoreWebView2.Settings.IsZoomControlEnabled =
-                    webView!.CoreWebView2.Settings.IsStatusBarEnabled = 
-                    webView!.CoreWebView2.Settings.IsPasswordAutosaveEnabled = false;
+                    //webView!.CoreWebView2.Settings.AreDevToolsEnabled = 
+                    //webView!.CoreWebView2.Settings.AreDefaultContextMenusEnabled = 
+                    //webView!.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = 
+                    //webView!.CoreWebView2.Settings.IsBuiltInErrorPageEnabled =
+                    //webView!.CoreWebView2.Settings.IsZoomControlEnabled =
+                    //webView!.CoreWebView2.Settings.IsStatusBarEnabled = 
+                    //webView!.CoreWebView2.Settings.IsPasswordAutosaveEnabled = false;
                 }
+                webView!.CoreWebView2.AddHostObjectToScript("test", new TestObject(webView, this));
             };
 
             // 讓WebView2隨著Form縮放
